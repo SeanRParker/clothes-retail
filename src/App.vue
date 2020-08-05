@@ -9,7 +9,7 @@
       :price="product.price"
       :quantity="product.quantityInStock"
     />
-    <p v-if="cart.length">Cart - {{ cart.length }}</p>
+
     <Cart :key="cart.id" :name="cart.name" />
   </div>
 </template>

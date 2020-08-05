@@ -3,12 +3,15 @@
     <ul :key="id">
       <li>
         {{ name }} - £{{ price.toFixed(2) }} - Quantity: {{ quantity }}
-
         <!-- <label for="quantity">Quantity:</label>
         <select name="quantity">
           <option>{{ quantity }}</option> 
-        </select> -->
+        </select>-->
         <button @click="addToCart(id)">Add to Cart</button>
+        <p
+          class="warning"
+          v-if="noStockLeft"
+        >Sorry, this item is out of stock, please select another</p>
       </li>
     </ul>
   </div>
@@ -17,12 +20,20 @@
 <script>
 // import { mapActions } from "vuex";
 export default {
-  name: "product",
-  props: ["id", "name", "quantity", "price"],
-
+  data() {
+    return {
+      noStockLeft: false,
+    };
+  },
+  name: 'product',
+  props: ['id', 'name', 'quantity', 'price'],
   methods: {
     addToCart(id) {
-      this.$store.dispatch("addToCart", id);
+      if (this.$store.getters.products[id - 1].quantityInStock > 0) {
+        this.$store.dispatch('addToCart', id);
+      } else {
+        this.noStockLeft = true;
+      }
     },
     // ...mapActions(["addToCart(id)"]),
   },
@@ -30,7 +41,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang="scss" scoped>
 h3 {
   margin: 40px 0 0;
 }
@@ -44,5 +55,8 @@ li {
 }
 a {
   color: #42b983;
+}
+.warning {
+  color: red;
 }
 </style>

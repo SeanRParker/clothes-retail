@@ -107,14 +107,12 @@ export default new Vuex.Store({
   },
   mutations: {
     ADD_ITEM(state, id) {
-      state.cart.push(id);
+      state.cart.push(state.products[id - 1]);
       state.products[id - 1].quantityInStock--;
     },
     REMOVE_ITEM(state, index) {
-      state.products[state.cart[index] - 1]["quantityInStock"] += 1;
+      state.products[state.cart[index].id - 1].quantityInStock += 1;
       state.cart.splice(index, 1);
-      console.log("remove");
-      console.log(state.products[index]);
     },
   },
   actions: {
