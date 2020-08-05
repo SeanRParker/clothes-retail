@@ -114,6 +114,9 @@ export default new Vuex.Store({
       state.products[state.cart[index].id - 1].quantityInStock += 1;
       state.cart.splice(index, 1);
     },
+    REMOVE_ALL(state) {
+      state.cart = [];
+    },
   },
   actions: {
     addToCart(context, id) {
@@ -121,6 +124,9 @@ export default new Vuex.Store({
     },
     removeFromCart(context, id) {
       context.commit("REMOVE_ITEM", id);
+    },
+    removeAllFromCart(context) {
+      context.commit("REMOVE_ALL");
     },
   },
   modules: {},

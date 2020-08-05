@@ -9,7 +9,10 @@
         >Remove Item</button>
       </li>
     </ul>
-    <p v-if="cart.length">Total: £{{ totalPrice.toFixed(2) }}</p>
+    <p v-if="cart.length">
+      Total: £{{ totalPrice.toFixed(2) }}
+      <button @click="removeAllFromCart">Remove All</button>
+    </p>
   </div>
 </template>
 
@@ -31,6 +34,9 @@ export default {
   methods: {
     removeFromCart(id) {
       this.$store.dispatch('removeFromCart', id);
+    },
+    removeAllFromCart() {
+      this.$store.dispatch('removeAllFromCart');
     },
   },
 };
