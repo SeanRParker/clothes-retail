@@ -7,7 +7,7 @@
         <select name="quantity">
           <option>{{ quantity }}</option> 
         </select>-->
-        <button @click="addToCart(id)">Add to Cart</button>
+        <button @click="addToCart(id)">+</button>
         <p
           class="warning"
           v-if="noStockLeft"
