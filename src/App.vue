@@ -60,4 +60,8 @@ a,
 button {
   cursor: pointer;
 }
+p,
+li {
+  font-size: 0.9em;
+}
 </style>

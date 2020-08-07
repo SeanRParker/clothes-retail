@@ -6,18 +6,21 @@
       <p>Items in Bag - {{ cart.length }}</p>
     </div>
     <div class="cart-container" v-if="cart.length">
+      <div class="coupon-group">
+        <label for="coupon">Coupon Code:&nbsp;</label>
+        <input class="coupon" v-model="offer" name="coupon" placeholder="Offer Code" />
+        <p class="coupon-msg" v-if="msg">{{msg}}</p>
+      </div>
+      <p class="total-amt">Total: £{{ totalPrice().toFixed(2) }}</p>
       <ul>
         <li v-for="(item, index) in cart" :key="index">
-          {{ item.productName }} - £{{ item.price.toFixed(2) }}
-          <button
-            @click="removeFromCart(index)"
-          >-</button>
+          <span>
+            <button @click="removeFromCart(index)">-</button>
+            {{ item.productName }} - £{{ item.price.toFixed(2) }}
+          </span>
+          <img class="cart-img" :src="item.imgSrc" />
         </li>
       </ul>
-      <p>Total: £{{ totalPrice().toFixed(2) }}</p>
-      <label for="coupon">Coupon Code:&nbsp;</label>
-      <input class="coupon" v-model="offer" name="coupon" placeholder="Offer Code" />
-      <p v-if="msg">{{msg}}</p>
     </div>
   </div>
 </template>
@@ -92,6 +95,60 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+#shopping-bag {
+  background: snow;
+  transition: display 0.4s;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 1px;
+  z-index: 1;
+  height: 100vh;
+  overflow: scroll;
+  box-shadow: 1px 1px 10px black;
+  transition: width 0.2s;
+  text-align: left;
+  .cart-container {
+    .cart-img {
+      width: 5em;
+    }
+    ul {
+      overflow: auto;
+      text-align: right;
+      li {
+        border-bottom: 1px solid lightgrey;
+        padding: 0.5em 0 0.2em;
+        display: inline-block;
+        width: 100%;
+        span {
+          display: inline-block;
+          text-align: left;
+          width: 82%;
+          padding-bottom: 0.5em;
+        }
+      }
+    }
+    padding: 0 1em;
+  }
+  .coupon-group {
+    vertical-align: middle;
+    margin: 2em 0 0;
+    padding-bottom: 1em;
+    .coupon-msg {
+      text-align: center;
+      margin-left: 1em;
+    }
+  }
+  .total-amt {
+    font-weight: bold;
+    font-size: 0.9em;
+    text-align: right;
+  }
+  i {
+    font-size: 3em;
+    font-style: normal;
+  }
+}
 ul li {
   list-style-type: none;
 }
@@ -105,24 +162,5 @@ ul li {
   cursor: pointer;
   font-size: 1em;
   margin-right: 0.2em;
-}
-#shopping-bag {
-  background: snow;
-  transition: display 0.4s;
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 1px;
-  z-index: 1;
-  height: 100vh;
-  box-shadow: 1px 1px 10px black;
-  transition: width 0.2s;
-  input.coupon {
-    margin-right: 0.4em;
-  }
-  i {
-    font-size: 3em;
-    font-style: normal;
-  }
 }
 </style>
