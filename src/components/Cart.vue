@@ -1,21 +1,24 @@
 <template>
-  <div id="shopping-bag" v-if="cart.length">
+  <div id="shopping-bag">
     <div class="cart-header">
       <i class="close-icon" @click="closeCart()">&times;</i>
-      <h3>Cart - {{ cart.length }}</h3>
+      <p v-if="cart.length === 0">Shopping bag is empty.</p>
+      <h3>Items in Bag - {{ cart.length }}</h3>
     </div>
-    <ul>
-      <li v-for="(item, index) in cart" :key="index">
-        {{ item.productName }} - £{{ item.price.toFixed(2) }}
-        <button
-          @click="removeFromCart(index)"
-        >-</button>
-      </li>
-    </ul>
-    <p>Total: £{{ totalPrice().toFixed(2) }}</p>
-    <label for="coupon">Coupon Code:&nbsp;</label>
-    <input class="coupon" v-model="offer" name="coupon" placeholder="Offer Code" />
-    <p v-if="msg">{{msg}}</p>
+    <div class="cart-container" v-if="cart.length">
+      <ul>
+        <li v-for="(item, index) in cart" :key="index">
+          {{ item.productName }} - £{{ item.price.toFixed(2) }}
+          <button
+            @click="removeFromCart(index)"
+          >-</button>
+        </li>
+      </ul>
+      <p>Total: £{{ totalPrice().toFixed(2) }}</p>
+      <label for="coupon">Coupon Code:&nbsp;</label>
+      <input class="coupon" v-model="offer" name="coupon" placeholder="Offer Code" />
+      <p v-if="msg">{{msg}}</p>
+    </div>
   </div>
 </template>
 
@@ -38,7 +41,7 @@ export default {
       this.$store.dispatch('removeFromCart', id);
     },
     closeCart() {
-      document.getElementById('shopping-bag').style = 'width:1px;';
+      document.getElementById('shopping-bag').style = 'width:0;';
     },
     checkKeysForString(type, str) {
       let foundKeys = this.$store.getters.cart.map((item) => item[type]);
@@ -113,7 +116,7 @@ ul li {
   z-index: 1;
   height: 100vh;
   box-shadow: 1px 1px 10px black;
-  transition: width 0.4s;
+  transition: width 0.2s;
   input.coupon {
     margin-right: 0.4em;
   }
