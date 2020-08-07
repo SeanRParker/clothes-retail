@@ -113,6 +113,7 @@ ul li {
   z-index: 1;
   height: 100vh;
   box-shadow: 1px 1px 10px black;
+  transition: width 0.4s;
   input.coupon {
     margin-right: 0.4em;
   }

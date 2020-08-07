@@ -28,12 +28,13 @@ img.site-logo {
 nav.main-nav {
   position: sticky;
   background: white;
+  height: 3.5em;
   top: 0;
   border-bottom: solid 1px slategrey;
   display: flex;
   justify-content: space-between;
-  align-content: center;
-  padding: 0.5em 1em;
+  align-items: flex-end;
+  padding: 0.5em 1em 1em;
 }
 .cart {
   cursor: pointer;
