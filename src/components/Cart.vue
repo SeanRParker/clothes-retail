@@ -2,8 +2,8 @@
   <div id="shopping-bag">
     <div class="cart-header">
       <i class="close-icon" @click="closeCart()">&times;</i>
-      <p v-if="cart.length === 0">Shopping bag is empty.</p>
-      <h3>Items in Bag - {{ cart.length }}</h3>
+      <p class="empty-cart-msg" v-if="cart.length === 0">Shopping bag is empty.</p>
+      <p>Items in Bag - {{ cart.length }}</p>
     </div>
     <div class="cart-container" v-if="cart.length">
       <ul>
@@ -97,7 +97,7 @@ ul li {
 }
 .cart-header {
   text-align: right;
-  h3 {
+  p {
     text-align: center;
   }
 }

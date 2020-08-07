@@ -14,7 +14,7 @@ export default {
   name: 'Navbar',
   methods: {
     openCart() {
-      document.getElementById('shopping-bag').style = 'width:34em;';
+      document.getElementById('shopping-bag').style = 'width:28em;';
     },
   },
 };
