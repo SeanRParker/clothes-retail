@@ -52,9 +52,38 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 4em auto;
+  grid-template-areas: 'nav' 'content';
+}
+#body {
+  display: grid;
+  grid-area: content;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  grid-gap: 1em;
+}
+@media (min-width: 550px) {
+  #app {
+    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-areas: 'nav nav nav' '. content .';
+  }
+  #body {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (min-width: 750px) {
+  #app {
+    grid-template-columns: 1fr 6fr 1fr;
+    grid-template-areas: 'nav nav nav' '. content .';
+  }
+  #body {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 img {
-  width: 15em;
+  width: 18em;
 }
 a,
 button {

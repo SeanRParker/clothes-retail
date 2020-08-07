@@ -16,7 +16,7 @@ export default {
   name: 'Navbar',
   methods: {
     openCart() {
-      document.getElementById('shopping-bag').style = 'width:24em;';
+      document.getElementById('shopping-bag').style = 'width:19em;';
     },
   },
 };
@@ -25,7 +25,7 @@ export default {
 <style lang="scss" scoped>
 img.site-logo {
   width: auto;
-  height: 2em;
+  height: 1.4em;
 }
 nav.main-nav {
   position: sticky;
@@ -37,6 +37,8 @@ nav.main-nav {
   justify-content: space-between;
   align-items: flex-end;
   padding: 0.5em 1em 1em;
+  grid-area: nav;
+  z-index: 2;
 }
 .cart {
   cursor: pointer;
@@ -49,8 +51,9 @@ nav.main-nav {
   .alert-item-added {
     border-radius: 50%;
     background: chocolate;
+    padding: 0.1em;
     color: white;
-    width: 1.3em;
+    width: 1.5em;
   }
 }
 .cart-icon {

@@ -18,15 +18,13 @@
         v-if="totalPrice()[1] > 0"
         class="discounted-total-amt"
       >Discounted Total: £{{ totalPrice()[1].toFixed(2) }}</p>
-      <ul>
-        <li v-for="(item, index) in cart" :key="index">
-          <span>
-            <button @click="removeFromCart(index)">-</button>
-            {{ item.productName }} - £{{ item.price.toFixed(2) }}
-          </span>
+      <div class="cart-items">
+        <div class="row" @click="removeFromCart(index)" v-for="(item, index) in cart" :key="index">
+          <p>{{ item.productName }} - £{{ item.price.toFixed(2) }}</p>
+          <i class="remove-icon">&minus;</i>
           <img class="cart-img" :src="item.imgSrc" />
-        </li>
-      </ul>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -64,7 +62,6 @@ export default {
       // 'fiveoff' - £5 off your order
       if (this.offer === 'fiveoff') {
         this.msg = 'Enjoy $5 off!';
-        // return total - 5;
         discountedTotal = total - 5;
         return [total, discountedTotal];
       }
@@ -120,24 +117,32 @@ export default {
   box-shadow: 1px 1px 10px black;
   transition: width 0.2s;
   text-align: left;
+  z-index: 3;
   .cart-container {
     .cart-img {
       width: 5em;
+      cursor: pointer;
     }
-    ul {
+    .cart-items {
       padding-top: 2em;
       overflow: auto;
       text-align: right;
-      li {
+      .row {
+        width: 100%;
         border-bottom: 1px solid lightgrey;
         padding: 0.5em 0 0.2em;
         display: inline-block;
-        width: 100%;
-        span {
-          display: inline-block;
+        cursor: pointer;
+        p {
+          width: 100%;
+        }
+        .remove-icon {
           text-align: left;
-          width: 82%;
           padding-bottom: 0.5em;
+          cursor: pointer;
+          position: relative;
+          left: -3.5em;
+          top: -0.7em;
         }
       }
     }
@@ -147,6 +152,9 @@ export default {
     vertical-align: middle;
     margin: 2em 0 0;
     padding-bottom: 1em;
+    input {
+      width: 10em;
+    }
     .coupon-msg {
       text-align: center;
       margin-left: 1em;

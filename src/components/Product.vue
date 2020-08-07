@@ -1,11 +1,11 @@
 <template>
   <div class="product">
-    <img class="product-img" :src="img" />
+    <img class="product-img" @click="addToCart(id)" :src="img" />
+    <i class="add-icon" @click="addToCart(id)">+</i>
     <p>{{ name }}</p>
     <p>Total: £{{ price.toFixed(2) }}</p>
-    <p>Quantity: {{ quantity }}</p>
-    <button @click="addToCart(id)">+</button>
-    <p class="warning" v-if="noStockLeft">Sorry, this item is out of stock, please select another</p>
+    <p>In Stock: {{ quantity }}</p>
+    <p class="warning" v-if="quantity === 0">Sorry, this item is out of stock, please select another</p>
   </div>
 </template>
 
@@ -23,17 +23,29 @@ export default {
     addToCart(id) {
       if (this.$store.getters.products[id - 1].quantityInStock > 0) {
         this.$store.dispatch('addToCart', id);
+        this.noStockLeft = false;
       } else {
         this.noStockLeft = true;
       }
     },
-    // ...mapActions(["addToCart(id)"]),
   },
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
+.product-img {
+  cursor: pointer;
+  height: 20em;
+  border-radius: 0.2em;
+}
+.add-icon {
+  position: relative;
+  height: 0;
+
+  font-style: normal;
+  font-size: 2em;
+  cursor: pointer;
+}
 h3 {
   margin: 40px 0 0;
 }
