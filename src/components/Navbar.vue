@@ -4,7 +4,9 @@
     <img class="site-logo" src="@/assets/bodan.png" />
     <p class="cart" @click="openCart()">
       <img src="@/assets/shopping-bag.png" class="cart-icon" />
-      {{this.$store.getters.cart.length}}
+      <span
+        :class="[$store.getters.cart.length ? 'alert-item-added' : '']"
+      >{{this.$store.getters.cart.length}}</span>
     </p>
   </nav>
 </template>
@@ -38,6 +40,18 @@ nav.main-nav {
 }
 .cart {
   cursor: pointer;
+  span {
+    width: 1.3em;
+    display: inline-block;
+    font-size: 0.8em;
+    vertical-align: top;
+  }
+  .alert-item-added {
+    border-radius: 50%;
+    background: chocolate;
+    color: white;
+    width: 1.3em;
+  }
 }
 .cart-icon {
   width: 1em;
