@@ -3,9 +3,12 @@
     <img class="product-img" @click="addToCart(id)" :src="img" />
     <i class="add-icon" @click="addToCart(id)">+</i>
     <p>{{ name }}</p>
-    <p>Total: £{{ price.toFixed(2) }}</p>
+    <p>{{ category }}</p>
+    <p>Price: £{{ price.toFixed(2) }}</p>
     <p>In Stock: {{ quantity }}</p>
-    <p class="warning" v-if="quantity === 0">Sorry, this item is out of stock, please select another</p>
+    <p class="warning" v-if="quantity === 0">
+      Sorry, this item is out of stock, please select another
+    </p>
   </div>
 </template>
 
@@ -17,12 +20,12 @@ export default {
       noStockLeft: false,
     };
   },
-  name: 'product',
-  props: ['id', 'img', 'name', 'quantity', 'price'],
+  name: "product",
+  props: ["id", "img", "category", "name", "quantity", "price"],
   methods: {
     addToCart(id) {
       if (this.$store.getters.products[id - 1].quantityInStock > 0) {
-        this.$store.dispatch('addToCart', id);
+        this.$store.dispatch("addToCart", id);
         this.noStockLeft = false;
       } else {
         this.noStockLeft = true;

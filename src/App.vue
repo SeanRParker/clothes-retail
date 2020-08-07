@@ -8,6 +8,7 @@
         :key="product.id"
         :id="product.id"
         :img="product.imgSrc"
+        :category="product.category"
         :name="product.productName"
         :price="product.price"
         :quantity="product.quantityInStock"
@@ -17,12 +18,12 @@
 </template>
 
 <script>
-import Cart from './components/Cart.vue';
-import Navbar from './components/Navbar.vue';
-import Product from './components/Product.vue';
+import Cart from "./components/Cart.vue";
+import Navbar from "./components/Navbar.vue";
+import Product from "./components/Product.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     Cart,
     Navbar,
@@ -45,7 +46,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../reset.scss';
+@import "../reset.scss";
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -55,7 +56,7 @@ export default {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 4em auto;
-  grid-template-areas: 'nav' 'content';
+  grid-template-areas: "nav" "content";
 }
 #body {
   display: grid;
@@ -67,7 +68,7 @@ export default {
 @media (min-width: 550px) {
   #app {
     grid-template-columns: 1fr 4fr 1fr;
-    grid-template-areas: 'nav nav nav' '. content .';
+    grid-template-areas: "nav nav nav" ". content .";
   }
   #body {
     grid-template-columns: 1fr 1fr;
@@ -76,7 +77,7 @@ export default {
 @media (min-width: 750px) {
   #app {
     grid-template-columns: 1fr 6fr 1fr;
-    grid-template-areas: 'nav nav nav' '. content .';
+    grid-template-areas: "nav nav nav" ". content .";
   }
   #body {
     grid-template-columns: repeat(3, 1fr);
