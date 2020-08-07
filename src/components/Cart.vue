@@ -78,6 +78,7 @@ export default {
         return total - 15;
       } else if (this.offer === 'flipflop' && total < 75) {
         this.msg = 'Purchase must exceed £75 for coupon to apply';
+        return total;
       } else if (
         this.offer === 'flipflop' &&
         this.checkKeysForString('category', 'Footwear') === false &&
