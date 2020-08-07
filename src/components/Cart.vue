@@ -88,4 +88,28 @@ export default {
 ul li {
   list-style-type: none;
 }
+.cart-header {
+  text-align: right;
+  h3 {
+    text-align: center;
+  }
+}
+.close-icon {
+  cursor: pointer;
+}
+#shopping-bag {
+  background: snow;
+  transition: display 0.4s;
+  // position: fixed;
+  // right: 0;
+  width: 50em;
+  z-index: 1;
+  height: 100vh;
+  // box-shadow: 1px 1px 10px black;
+
+  i {
+    font-size: 3em;
+    font-style: normal;
+  }
+}
 </style>

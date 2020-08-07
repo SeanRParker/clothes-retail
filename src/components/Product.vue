@@ -1,19 +1,11 @@
 <template>
-  <div>
-    <ul :key="id">
-      <li>
-        {{ name }} - £{{ price.toFixed(2) }} - Quantity: {{ quantity }}
-        <!-- <label for="quantity">Quantity:</label>
-        <select name="quantity">
-          <option>{{ quantity }}</option> 
-        </select>-->
-        <button @click="addToCart(id)">+</button>
-        <p
-          class="warning"
-          v-if="noStockLeft"
-        >Sorry, this item is out of stock, please select another</p>
-      </li>
-    </ul>
+  <div class="product">
+    <img class="product-img" :src="img" />
+    <p>{{ name }}</p>
+    <p>Total: £{{ price.toFixed(2) }}</p>
+    <p>Quantity: {{ quantity }}</p>
+    <button @click="addToCart(id)">+</button>
+    <p class="warning" v-if="noStockLeft">Sorry, this item is out of stock, please select another</p>
   </div>
 </template>
 
@@ -26,7 +18,7 @@ export default {
     };
   },
   name: 'product',
-  props: ['id', 'name', 'quantity', 'price'],
+  props: ['id', 'img', 'name', 'quantity', 'price'],
   methods: {
     addToCart(id) {
       if (this.$store.getters.products[id - 1].quantityInStock > 0) {

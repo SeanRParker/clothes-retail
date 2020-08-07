@@ -1,16 +1,18 @@
 <template>
   <div id="app">
     <Navbar />
-    <Product
-      v-for="product in products"
-      :key="product.id"
-      :id="product.id"
-      :name="product.productName"
-      :price="product.price"
-      :quantity="product.quantityInStock"
-    />
-
-    <Cart :key="cart.id" :name="cart.name" />
+    <div id="body">
+      <Product
+        v-for="product in products"
+        :key="product.id"
+        :id="product.id"
+        :img="product.imgSrc"
+        :name="product.productName"
+        :price="product.price"
+        :quantity="product.quantityInStock"
+      />
+      <Cart :key="cart.id" :name="cart.name" />
+    </div>
   </div>
 </template>
 

@@ -9,6 +9,12 @@
 <script>
 export default {
   name: 'Navbar',
+  methods: {
+    openCart() {
+      console.log('openCART!');
+      // document.getElementById('shopping-bag').style = 'width:24em;';
+    },
+  },
 };
 </script>
 
