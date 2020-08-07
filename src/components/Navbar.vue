@@ -1,8 +1,11 @@
 <template>
   <nav class="main-nav">
-    <h3 class="title">Shopping Cart</h3>
+    <span></span>
     <img class="site-logo" src="@/assets/bodan.png" />
-    <p>{{this.$store.getters.cart.length}} cart</p>
+    <p class="cart" @click="openCart()">
+      <img src="@/assets/shopping-bag.png" class="cart-icon" />
+      {{this.$store.getters.cart.length}}
+    </p>
   </nav>
 </template>
 
@@ -11,8 +14,7 @@ export default {
   name: 'Navbar',
   methods: {
     openCart() {
-      console.log('openCART!');
-      // document.getElementById('shopping-bag').style = 'width:24em;';
+      document.getElementById('shopping-bag').style = 'width:34em;';
     },
   },
 };
@@ -23,10 +25,21 @@ img.site-logo {
   width: auto;
   height: 2em;
 }
-nav {
+nav.main-nav {
+  position: sticky;
+  background: white;
+  top: 0;
   border-bottom: solid 1px slategrey;
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  justify-content: space-between;
+  align-content: center;
+  padding: 0.5em 1em;
+}
+.cart {
+  cursor: pointer;
+}
+.cart-icon {
+  width: 1em;
+  height: auto;
 }
 </style>

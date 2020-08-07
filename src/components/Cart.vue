@@ -1,6 +1,7 @@
 <template>
-  <div class="shopping-bag" v-if="cart.length">
+  <div id="shopping-bag" v-if="cart.length">
     <div class="cart-header">
+      <i class="close-icon" @click="closeCart()">&times;</i>
       <h3>Cart - {{ cart.length }}</h3>
     </div>
     <ul>
@@ -12,8 +13,8 @@
       </li>
     </ul>
     <p>Total: £{{ totalPrice().toFixed(2) }}</p>
-    <label for="coupon">Coupon Code:</label>
-    <input v-model="offer" name="coupon" placeholder="Offer Code" />
+    <label for="coupon">Coupon Code:&nbsp;</label>
+    <input class="coupon" v-model="offer" name="coupon" placeholder="Offer Code" />
     <p v-if="msg">{{msg}}</p>
   </div>
 </template>
@@ -35,6 +36,9 @@ export default {
   methods: {
     removeFromCart(id) {
       this.$store.dispatch('removeFromCart', id);
+    },
+    closeCart() {
+      document.getElementById('shopping-bag').style = 'width:1px;';
     },
     checkKeysForString(type, str) {
       let foundKeys = this.$store.getters.cart.map((item) => item[type]);
@@ -96,17 +100,22 @@ ul li {
 }
 .close-icon {
   cursor: pointer;
+  font-size: 1em;
+  margin-right: 0.2em;
 }
 #shopping-bag {
   background: snow;
   transition: display 0.4s;
-  // position: fixed;
-  // right: 0;
-  width: 50em;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 1px;
   z-index: 1;
   height: 100vh;
-  // box-shadow: 1px 1px 10px black;
-
+  box-shadow: 1px 1px 10px black;
+  input.coupon {
+    margin-right: 0.4em;
+  }
   i {
     font-size: 3em;
     font-style: normal;

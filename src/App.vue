@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <Navbar />
+    <Cart :key="cart.id" :name="cart.name" />
     <div id="body">
       <Product
         v-for="product in products"
@@ -11,7 +12,6 @@
         :price="product.price"
         :quantity="product.quantityInStock"
       />
-      <Cart :key="cart.id" :name="cart.name" />
     </div>
   </div>
 </template>
@@ -51,6 +51,9 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+img {
+  width: 15em;
 }
 a,
 button {
