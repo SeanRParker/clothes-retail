@@ -11,7 +11,13 @@
         <input class="coupon" v-model="offer" name="coupon" placeholder="Offer Code" />
         <p class="coupon-msg" v-if="msg">{{msg}}</p>
       </div>
-      <p class="total-amt">Total: £{{ totalPrice().toFixed(2) }}</p>
+      <p
+        :class="[totalPrice()[1] > 0 ? 'total-amt strikethrough' : 'total-amt']"
+      >Total: £{{ totalPrice()[0].toFixed(2) }}</p>
+      <p
+        v-if="totalPrice()[1] > 0"
+        class="discounted-total-amt"
+      >Discounted Total: £{{ totalPrice()[1].toFixed(2) }}</p>
       <ul>
         <li v-for="(item, index) in cart" :key="index">
           <span>
@@ -54,19 +60,23 @@ export default {
       let total = this.$store.getters.cart
         .map((item) => item.price)
         .reduce((a, b) => a + b);
+      let discountedTotal = 0;
       // 'fiveoff' - £5 off your order
       if (this.offer === 'fiveoff') {
         this.msg = 'Enjoy $5 off!';
-        return total - 5;
+        // return total - 5;
+        discountedTotal = total - 5;
+        return [total, discountedTotal];
       }
       // 'tenner' - £10 off order if greater than 50
       if (this.offer === 'tenner' && total < 50) {
         this.msg = 'Sorry, to get £10 off, your purchase must exceed $50!';
-        return total;
+        return [total, discountedTotal];
       }
       if (this.offer === 'tenner' && total >= 50) {
         this.msg = 'Enjoy £10 off!';
-        return total - 10;
+        discountedTotal = total - 10;
+        return [total, discountedTotal];
       }
       // 'flipflop' - cart includes footwear && total > 75
       if (
@@ -75,20 +85,21 @@ export default {
         total >= 75
       ) {
         this.msg = 'Enjoy £15 off!';
-        return total - 15;
+        discountedTotal = total - 15;
+        return [total, discountedTotal];
       } else if (this.offer === 'flipflop' && total < 75) {
         this.msg = 'Purchase must exceed £75 for coupon to apply';
-        return total;
+        return [total, discountedTotal];
       } else if (
         this.offer === 'flipflop' &&
         this.checkKeysForString('category', 'Footwear') === false &&
         total > 75
       ) {
         this.msg = 'Purchase must include footwear for coupon to apply';
-        return total;
+        return [total, discountedTotal];
       } else {
         this.msg = '';
-        return total;
+        return [total, discountedTotal];
       }
     },
   },
@@ -114,6 +125,7 @@ export default {
       width: 5em;
     }
     ul {
+      padding-top: 2em;
       overflow: auto;
       text-align: right;
       li {
@@ -140,10 +152,19 @@ export default {
       margin-left: 1em;
     }
   }
+  .strikethrough.total-amt {
+    text-decoration: line-through;
+    color: darksalmon;
+    font-weight: normal;
+  }
   .total-amt {
     font-weight: bold;
     font-size: 0.9em;
     text-align: right;
+  }
+  .discounted-total-amt {
+    text-align: right;
+    font-weight: 600;
   }
   i {
     font-size: 3em;
