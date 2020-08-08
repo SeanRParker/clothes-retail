@@ -13,7 +13,7 @@
 
 - `fiveoff` - takes £5 off transaction
 - `tenner` - takes £10 off transaction if cart totals £50 or more
-- `tenner` - takes £15 off transaction if cart totals above £75 and cart includes footwear
+- `flipflop` - takes £15 off transaction if cart totals above £75 and cart includes footwear
 
 Products are in one column on mobile, but expand to two or three columns in larger viewports. I acheived this with nested CSSgrids.
 
