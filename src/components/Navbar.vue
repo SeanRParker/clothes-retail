@@ -5,18 +5,23 @@
     <p class="cart" @click="openCart()">
       <img src="@/assets/shopping-bag.png" class="cart-icon" />
       <span
-        :class="[$store.getters.cart.length ? 'alert-item-added' : '']"
-      >{{this.$store.getters.cart.length}}</span>
+        :class="[
+          $store.getters.cart.length
+            ? 'alert-item-added cart-count'
+            : 'cart-count',
+        ]"
+        >{{ this.$store.getters.cart.length }}</span
+      >
     </p>
   </nav>
 </template>
 
 <script>
 export default {
-  name: 'Navbar',
+  name: "Navbar",
   methods: {
     openCart() {
-      document.getElementById('shopping-bag').style = 'width:19em;';
+      document.getElementById("shopping-bag").style = "width:19em;";
     },
   },
 };

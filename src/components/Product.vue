@@ -1,11 +1,11 @@
 <template>
   <div class="product">
     <img class="product-img" @click="addToCart(id)" :src="img" />
-    <i class="add-icon" @click="addToCart(id)">+</i>
-    <p>{{ name }}</p>
-    <p>{{ category }}</p>
-    <p>Price: £{{ price.toFixed(2) }}</p>
-    <p>In Stock: {{ quantity }}</p>
+    <i :id="`prod-${id}-add`" class="add-icon" @click="addToCart(id)">+</i>
+    <p :id="`prod-${id}-name`">{{ name }}</p>
+    <p :id="`prod-${id}-category`">{{ category }}</p>
+    <p :id="`prod-${id}-price`">Price: £{{ price.toFixed(2) }}</p>
+    <p :id="`prod-${id}-quantity`">In Stock: {{ quantity }}</p>
     <p class="warning" v-if="quantity === 0">
       Sorry, this item is out of stock, please select another
     </p>
@@ -36,6 +36,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.product {
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+}
 .product-img {
   cursor: pointer;
   height: 20em;
@@ -43,8 +48,8 @@ export default {
 }
 .add-icon {
   position: relative;
-  height: 0;
-
+  height: 1.2em;
+  display: block;
   font-style: normal;
   font-size: 2em;
   cursor: pointer;
