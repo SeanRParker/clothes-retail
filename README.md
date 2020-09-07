@@ -9,6 +9,9 @@
 ### Compiles and minifies for production
 `npm run build`
 
+### Run Cypress Tests - test cart, coupon codes, etc.
+`npm test` or `npm t`
+
 ## Coupon codes to try
 
 - `fiveoff` - takes £5 off transaction
