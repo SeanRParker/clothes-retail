@@ -45,6 +45,7 @@ export default {
   cursor: pointer;
   height: 20em;
   border-radius: 0.2em;
+  margin: 0 auto;
 }
 .add-icon {
   position: relative;
