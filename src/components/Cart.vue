@@ -29,10 +29,9 @@
       <div class="cart-items">
         <div
           class="row"
-          @click="removeFromCart(index, id)"
+          @click="removeFromCart(index)"
           v-for="(item, index) in cart"
           :key="index"
-          :id="item.id"
         >
           <p>
             {{ item.quantityInCart }} {{ item.productName }} - £{{
@@ -62,8 +61,9 @@ export default {
     },
   },
   methods: {
-    removeFromCart(id) {
-      this.$store.dispatch('removeFromCart', id);
+    removeFromCart(index) {
+      this.$store.dispatch('removeFromCart', index);
+      console.log(index);
     },
     countItems() {
       let cart = this.$store.getters.cart;

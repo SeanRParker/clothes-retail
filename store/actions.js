@@ -1,9 +1,6 @@
 export const addToCart = ({ commit }, id) => {
   commit("addToCart", id);
 };
-export const removeFromCart = ({ commit }, id) => {
-  commit("removeFromCart", id);
+export const removeFromCart = ({ commit }, index) => {
+  commit("removeFromCart", index);
 };
-// export const countItems = ({ commit }) => {
-//   commit("countItems");
-// };

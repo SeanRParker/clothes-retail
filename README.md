@@ -24,7 +24,7 @@ Products are in one column on mobile, but expand to two or three columns in larg
 `App.vue` - has the general html/styles with all children components
 Everything is on the same page, so no routing.
 
-`/store/index.js` - includes mutations, actions, and product data. This is Vuex.
+`/store` - includes mutations, actions, and product data. This is Vuex.
 
 `Product.vue` - list of items on the page
 `Navbar.vue` - contains logo and cart icon
@@ -32,7 +32,8 @@ Everything is on the same page, so no routing.
 
 ## Lessons for the future
 
-- Implement testing (I planned on using Cypress) earlier on to reduce time spent manually spot checking bugs I came across.
-- Split out the vue `/store/index.js` file into smaller files and use `mapActions` and `mapGetters` to clean up code a bit instead of using `this.$store.getters...` everywhere.
+- ~~Implement testing (I planned on using Cypress) earlier on to reduce time spent manually spot checking bugs I came across.~~
+- ~~Split out the vue `/store/index.js` file into smaller files and use `mapActions` and `mapGetters` to clean up code a bit instead of using `this.$store.getters...` everywhere.~~
+- Get the shopping cart to combine like items and adjusting the quantity.
 - Use a third party CSS framework to cut down time hand building things. I did however learn a ton this round doing things from scratch.
 
