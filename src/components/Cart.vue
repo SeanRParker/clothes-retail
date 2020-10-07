@@ -2,25 +2,43 @@
   <div id="shopping-bag">
     <div class="cart-header">
       <i class="close-icon" @click="closeCart()">&times;</i>
-      <p class="empty-cart-msg" v-if="cart.length === 0">Shopping bag is empty.</p>
-      <p>Items in Bag - {{ cart.length }}</p>
+      <p class="empty-cart-msg" v-if="cart.length === 0">
+        Shopping bag is empty.
+      </p>
+      <p>Items in Bag - {{ countItems() }}</p>
     </div>
     <div class="cart-container" v-if="cart.length">
       <div class="coupon-group">
         <label for="coupon">Coupon Code:&nbsp;</label>
-        <input class="coupon" v-model="offer" name="coupon" placeholder="Offer Code" />
-        <p class="coupon-msg" v-if="msg">{{msg}}</p>
+        <input
+          class="coupon"
+          v-model="offer"
+          name="coupon"
+          placeholder="Offer Code"
+        />
+        <p class="coupon-msg" v-if="msg">{{ msg }}</p>
       </div>
       <p
         :class="[totalPrice()[1] > 0 ? 'total-amt strikethrough' : 'total-amt']"
-      >Total: £{{ totalPrice()[0].toFixed(2) }}</p>
-      <p
-        v-if="totalPrice()[1] > 0"
-        class="discounted-total-amt"
-      >Discounted Total: £{{ totalPrice()[1].toFixed(2) }}</p>
+      >
+        Total: £{{ totalPrice()[0].toFixed(2) }}
+      </p>
+      <p v-if="totalPrice()[1] > 0" class="discounted-total-amt">
+        Discounted Total: £{{ totalPrice()[1].toFixed(2) }}
+      </p>
       <div class="cart-items">
-        <div class="row" @click="removeFromCart(index)" v-for="(item, index) in cart" :key="index">
-          <p>{{ item.productName }} - £{{ item.price.toFixed(2) }}</p>
+        <div
+          class="row"
+          @click="removeFromCart(index, id)"
+          v-for="(item, index) in cart"
+          :key="index"
+          :id="item.id"
+        >
+          <p>
+            {{ item.quantityInCart }} {{ item.productName }} - £{{
+              item.price.toFixed(2)
+            }}
+          </p>
           <i class="remove-icon">&minus;</i>
           <img class="cart-img" :src="item.imgSrc" />
         </div>
@@ -46,6 +64,10 @@ export default {
   methods: {
     removeFromCart(id) {
       this.$store.dispatch('removeFromCart', id);
+    },
+    countItems() {
+      let cart = this.$store.getters.cart;
+      return cart.map((i) => i.quantityInCart).reduce((a, b) => a + b, 0);
     },
     closeCart() {
       document.getElementById('shopping-bag').style = 'width:0;';

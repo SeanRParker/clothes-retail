@@ -16,6 +16,7 @@ const state = {
       category: "Women’s Footwear",
       price: 99.0,
       quantityInStock: 5,
+      quantityInCart: 0,
     },
     {
       id: 2,
@@ -25,6 +26,7 @@ const state = {
       category: "Women’s Footwear",
       price: 42.0,
       quantityInStock: 4,
+      quantityInCart: 0,
     },
     {
       id: 3,
@@ -34,6 +36,7 @@ const state = {
       category: "Men’s Footwear",
       price: 34.0,
       quantityInStock: 12,
+      quantityInCart: 0,
     },
     {
       id: 4,
@@ -43,6 +46,7 @@ const state = {
       category: "Men’s Footwear",
       price: 19.0,
       quantityInStock: 6,
+      quantityInCart: 0,
     },
     {
       id: 5,
@@ -52,6 +56,7 @@ const state = {
       category: "Men’s Footwear",
       price: 19.0,
       quantityInStock: 0,
+      quantityInCart: 0,
     },
     {
       id: 6,
@@ -61,6 +66,7 @@ const state = {
       category: "Women’s Casualwear",
       price: 167.0,
       quantityInStock: 6,
+      quantityInCart: 0,
     },
     {
       id: 7,
@@ -70,6 +76,7 @@ const state = {
       category: "Women’s Casualwear",
       price: 30.0,
       quantityInStock: 5,
+      quantityInCart: 0,
     },
     {
       id: 8,
@@ -79,6 +86,7 @@ const state = {
       category: "Men’s Casualwear",
       price: 49.99,
       quantityInStock: 9,
+      quantityInCart: 0,
     },
     {
       id: 9,
@@ -89,6 +97,7 @@ const state = {
       price: 49.99,
       discountPrice: 39.99,
       quantityInStock: 3,
+      quantityInCart: 0,
     },
     {
       id: 10,
@@ -98,6 +107,7 @@ const state = {
       category: "Men’s Formalwear",
       price: 75.0,
       quantityInStock: 2,
+      quantityInCart: 0,
     },
     {
       id: 11,
@@ -107,6 +117,7 @@ const state = {
       category: "Men’s Formalwear",
       price: 175.5,
       quantityInStock: 1,
+      quantityInCart: 0,
     },
     {
       id: 12,
@@ -116,6 +127,7 @@ const state = {
       category: "Women’s Formalwear",
       price: 270.0,
       quantityInStock: 10,
+      quantityInCart: 0,
     },
     {
       id: 13,
@@ -125,6 +137,7 @@ const state = {
       category: "Women’s Formalwear",
       price: 540.0,
       quantityInStock: 5,
+      quantityInCart: 0,
     },
   ],
   cart: [],

@@ -5,12 +5,8 @@
     <p class="cart" @click="openCart()">
       <img src="@/assets/shopping-bag.png" class="cart-icon" />
       <span
-        :class="[
-          $store.getters.cart.length
-            ? 'alert-item-added cart-count'
-            : 'cart-count',
-        ]"
-        >{{ this.$store.getters.cart.length }}</span
+        :class="[countItems() ? 'alert-item-added cart-count' : 'cart-count']"
+        >{{ countItems() }}</span
       >
     </p>
   </nav>
@@ -18,10 +14,14 @@
 
 <script>
 export default {
-  name: "Navbar",
+  name: 'Navbar',
   methods: {
     openCart() {
-      document.getElementById("shopping-bag").style = "width:19em;";
+      document.getElementById('shopping-bag').style = 'width:19em;';
+    },
+    countItems() {
+      let cart = this.$store.getters.cart;
+      return cart.map((i) => i.quantityInCart).reduce((a, b) => a + b, 0);
     },
   },
 };
