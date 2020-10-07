@@ -35,5 +35,5 @@ Everything is on the same page, so no routing.
 - [x] Implement testing (I planned on using Cypress) earlier on to reduce time spent manually spot checking bugs I came across.
 - [x] Split out the vue `/store/index.js` file into smaller files and use `mapActions` and `mapGetters` to clean up code a bit instead of using `this.$store.getters...` everywhere.
 - [x] Get the shopping cart to combine like items and adjusting the quantity.
-- Use a third party CSS framework to cut down time hand building things. I did however learn a ton this round doing things from scratch.
+- []Use a third party CSS framework to cut down time hand building things. I did however learn a ton this round doing things from scratch.
 
